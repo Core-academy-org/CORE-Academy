@@ -18,29 +18,26 @@ export default function App() {
       
       <Hero />
 
-      {/* Social Proof / Logo Cloud - Infinite Marquee with Text Names */}
-      <section className="py-20 bg-brand-navy border-y border-white/5 relative z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-brand-blue/5 blur-[120px] pointer-events-none" />
-        <div className="container max-w-7xl mx-auto px-6 mb-12 text-center">
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 italic">Trusted by Leading Institutions</span>
-        </div>
-        <div className="flex overflow-hidden">
+      {/* Social Proof / Logo Cloud - High Contrast Ribbon Lane */}
+      <section className="py-24 bg-brand-navy relative z-10 overflow-hidden border-y border-white/5">
+        <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
+        <div className="flex overflow-hidden py-10 relative group bg-white/[0.01] border-y border-white/5">
           <motion.div 
-            className="flex items-center gap-12 whitespace-nowrap px-12"
+            className="flex items-center gap-24 whitespace-nowrap px-12"
             animate={{ x: ["0%", "-50%"] }}
             transition={{ 
-              duration: 30, 
+              duration: 40, 
               ease: "linear", 
               repeat: Infinity 
             }}
           >
             {[...Array(2)].map((_, groupIdx) => (
-              <div key={groupIdx} className="flex items-center gap-12">
+              <div key={groupIdx} className="flex items-center gap-24">
                 {[
                   "British Council", "IDP IELTS", "Cambridge Assessment English", "Youth Affairs Agency", "Ministry of Education", "American Councils", "ETS TOEFL", "National University"
                 ].map((name, i) => (
-                  <div key={i} className="flex items-center gap-4 text-xl md:text-2xl font-display font-black tracking-tighter uppercase text-white/20 hover:text-white/60 transition-colors italic">
-                    <div className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
+                  <div key={i} className="flex items-center gap-8 text-3xl md:text-5xl font-display font-black tracking-tighter uppercase text-white/10 hover:text-white transition-all duration-500 italic grayscale hover:grayscale-0 cursor-default">
+                    <div className="w-3 h-3 rounded-full bg-brand-cyan/20 group-hover:bg-brand-cyan transition-colors" />
                     {name}
                   </div>
                 ))}

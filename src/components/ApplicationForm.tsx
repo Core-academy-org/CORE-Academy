@@ -247,7 +247,7 @@ export default function ApplicationForm() {
                     <button 
                       type="submit"
                       disabled={loading}
-                      className="premium-btn-primary w-full py-5 flex items-center justify-center gap-3 disabled:opacity-50"
+                      className="w-full py-5 rounded-2xl bg-gradient-to-tr from-brand-orange to-red-500 text-xs font-black uppercase tracking-widest text-white hover:scale-105 active:scale-95 transition-all shadow-lg shadow-brand-orange/20 flex items-center justify-center gap-3 disabled:opacity-50 italic"
                     >
                       {loading ? (
                         <>
