@@ -44,8 +44,9 @@ export default function Navbar() {
           <a href="/" className="flex items-center gap-3 group relative z-50">
             <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center p-0.5 overflow-hidden group-hover:scale-110 transition-transform">
               <img 
-                src="/src/assets/images/regenerated_image_1778328522015.jpg" 
-                alt="Core Academy Logo" 
+            <Link href="/" className="flex items-center">
+  <img src="/logo.png" alt="Core Academy" className="h-10 w-auto" />
+</Link>
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
