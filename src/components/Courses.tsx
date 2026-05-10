@@ -5,29 +5,29 @@ import { useLanguage } from "../contexts/LanguageContext";
 
 const getCourses = (t: (key: string) => string) => [
   {
-    id: "IELTS",
+    id: "ielts",
     title: t("course_ielts"),
     desc: t("course_ielts_desc"),
     accent: "bg-brand-blue",
-    result: "7.5 BAND",
+    result: "8.5 BAND",
     tags: ["British Council", "IDP"],
     outcome: "Global University Readiness"
   },
   {
-    id: "SAT",
+    id: "sat",
     title: t("course_sat"),
     desc: t("course_sat_desc"),
     accent: "bg-brand-orange",
-    result: "1400+",
+    result: "1580+",
     tags: ["Digital SAT", "Math", "Reading"],
     outcome: "Ivy League Standard"
   },
   {
-    id: "TOPIK",
+    id: "topik",
     title: t("course_topik"),
     desc: t("course_topik_desc"),
     accent: "bg-brand-cyan",
-    result: "Level 4+",
+    result: "Level 6",
     tags: ["Korean", "GKS Scholarship"],
     outcome: "GKS Scholarship Success"
   }
