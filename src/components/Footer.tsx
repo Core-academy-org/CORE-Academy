@@ -27,7 +27,7 @@ export default function Footer() {
             <a href="/" className="flex items-center gap-4 mb-10 group">
               <div className="w-14 h-14 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center p-0.5 overflow-hidden group-hover:scale-110 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.05)]">
                 <img 
-                  src="/src/assets/images/regenerated_image_1778328522015.jpg" 
+                  src="/logo.jpg" 
                   alt="Core Academy" 
                   className="w-full h-full object-cover rounded-2xl grayscale brightness-125" 
                 />
