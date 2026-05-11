@@ -17,12 +17,11 @@ async function startServer() {
     const { name, telegram, phone, course } = req.body;
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN || "8681856242:AAHCUIImUdYvTcLqPWfVWwKNHOc7UqEt9aw";
-    const chatId = process.env.TELEGRAM_CHAT_ID || "8681856242";
+    const chatId = process.env.TELEGRAM_CHAT_ID || "8034737379";
 
     if (!botToken || !chatId) {
-      console.error("Telegram configuration missing");
-      // Still return 200 to user but log error on server
-      return res.status(200).json({ success: true, message: "Logged (Offline Simulation)" });
+      console.warn("Telegram Token or Chat ID missing. Check environment variables.");
+      return res.status(200).json({ success: true, message: "Simulation Mode: Configuration missing" });
     }
 
     const text = `
