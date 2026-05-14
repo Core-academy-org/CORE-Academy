@@ -37,8 +37,8 @@ export default function Navbar() {
       <nav className={cn(
         "fixed top-6 left-1/2 -translate-x-1/2 z-[100] transition-all duration-700 w-[calc(100%-3rem)] max-w-7xl px-8 py-3 rounded-full border",
         isScrolled 
-          ? "bg-brand-blue/10 backdrop-blur-[40px] border-white/20 shadow-[0_20px_80px_rgba(37,99,235,0.25)] ring-1 ring-white/10" 
-          : "bg-white/[0.02] backdrop-blur-2xl border-white/10"
+          ? "bg-brand-blue/5 backdrop-blur-xl border-white/10 shadow-[0_20px_80px_rgba(37,99,235,0.15)] ring-1 ring-white/5" 
+          : "bg-transparent backdrop-blur-md border-white/5"
       )}>
         <div className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-3 group relative z-50">
@@ -101,7 +101,7 @@ export default function Navbar() {
             </div>
             <button 
               onClick={() => document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-6 py-2.5 rounded-2xl bg-gradient-to-tr from-brand-orange to-red-500 text-xs font-black uppercase tracking-widest text-white hover:scale-105 active:scale-95 transition-all shadow-lg shadow-brand-orange/20"
+              className="px-6 py-2.5 rounded-full bg-gradient-to-tr from-brand-orange to-red-500 text-xs font-black uppercase tracking-widest text-white hover:scale-105 active:scale-95 transition-all shadow-lg shadow-brand-orange/20"
             >
               {t("apply_now")}
             </button>
@@ -167,7 +167,7 @@ export default function Navbar() {
               >
                 <button 
                   onClick={() => { document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' }); setIsMenuOpen(false); }}
-                  className="w-full py-6 rounded-2xl bg-gradient-to-tr from-brand-orange to-red-500 text-white font-black uppercase tracking-[0.2em] shadow-2xl shadow-brand-orange/30 text-lg sm:text-xl active:scale-95 transition-transform"
+                  className="w-full py-6 rounded-full bg-gradient-to-tr from-brand-orange to-red-500 text-white font-black uppercase tracking-[0.2em] shadow-2xl shadow-brand-orange/30 text-lg sm:text-xl active:scale-95 transition-transform"
                 >
                   {t("apply_now")}
                 </button>

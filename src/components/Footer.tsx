@@ -17,8 +17,8 @@ export default function Footer() {
           transition={{ duration: 1.5, ease: "circOut" }}
           className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-blue/5 to-transparent blur-[120px]"
         />
-        <h2 className="text-[28vw] font-black font-display leading-none whitespace-nowrap opacity-[0.02] text-white italic tracking-tighter -translate-x-12">CORE</h2>
-        <h2 className="text-[28vw] font-black font-display leading-none whitespace-nowrap opacity-[0.02] text-brand-cyan italic tracking-tighter text-right translate-x-12">ACADEMY</h2>
+        <h2 className="text-[32vw] font-black font-display leading-[0.75] whitespace-nowrap opacity-[0.02] text-white italic tracking-tighter text-center">CORE</h2>
+        <h2 className="text-[32vw] font-black font-display leading-[0.75] whitespace-nowrap opacity-[0.02] text-brand-cyan italic tracking-tighter text-center">ACADEMY</h2>
       </div>
       
       <div className="container max-w-7xl mx-auto px-6 relative z-10">

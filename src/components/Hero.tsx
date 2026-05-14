@@ -74,17 +74,17 @@ export default function Hero() {
             <div className="mirror-panel rounded-[32px] p-8 border-white/10 flex flex-wrap items-center justify-between gap-8">
               <div className="flex flex-col">
                 <span className="text-3xl font-black text-white font-display tracking-tighter italic">1.5K+</span>
-                <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] font-black">{t("stat_students") || "Success Stories"}</span>
+                <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] font-black">{t("stat_students")}</span>
               </div>
               <div className="hidden sm:block h-10 w-px bg-white/5" />
               <div className="flex flex-col">
                 <span className="text-3xl font-black text-white font-display tracking-tighter italic">7.5+</span>
-                <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] font-black">{t("stat_ielts_desc") || "Average IELTS Score"}</span>
+                <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] font-black">{t("stat_ielts")}</span>
               </div>
               <div className="hidden sm:block h-10 w-px bg-white/5" />
               <div className="flex flex-col">
                 <span className="text-3xl font-black text-white font-display tracking-tighter italic">1450+</span>
-                <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] font-black">{t("stat_sat_desc") || "Average SAT Score"}</span>
+                <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] font-black">{t("stat_sat")}</span>
               </div>
             </div>
           </div>

@@ -21,6 +21,11 @@ export default function App() {
       {/* Social Proof / Logo Cloud - High Contrast Ribbon Lane */}
       <section className="py-24 bg-brand-navy relative z-10 overflow-hidden border-y border-white/5">
         <div className="absolute inset-0 bg-white/[0.02] pointer-events-none" />
+        
+        <div className="container max-w-7xl mx-auto px-6 mb-12 flex justify-center">
+          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 italic">Trusted by</span>
+        </div>
+
         <div className="flex overflow-hidden py-10 relative group bg-white/[0.01] border-y border-white/5">
           <motion.div 
             className="flex items-center gap-24 whitespace-nowrap px-12"

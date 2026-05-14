@@ -43,8 +43,8 @@
 
 .premium-btn-primary {
   @apply relative overflow-hidden px-8 py-4 rounded-full font-black uppercase tracking-widest text-xs transition-all duration-700
-         bg-brand-blue/20 border border-brand-blue/30 text-brand-cyan hover:bg-brand-blue/40 hover:border-brand-cyan/40 
-         hover:shadow-[0_0_50px_rgba(6,182,212,0.2)] active:scale-95 flex items-center justify-center backdrop-blur-xl italic;
+         bg-gradient-to-tr from-brand-orange to-red-500 text-white hover:scale-105 
+         hover:shadow-[0_0_50px_rgba(245,158,11,0.3)] active:scale-95 flex items-center justify-center shadow-lg shadow-brand-orange/20 italic;
 }
 
 @layer utilities {

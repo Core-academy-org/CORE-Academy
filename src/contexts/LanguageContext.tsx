@@ -90,6 +90,9 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     apply_submit: "Send Application",
     apply_success_title: "TRANSMISSION SUCCESSFUL",
     apply_success_desc: "Your application has been logged. An academic advisor will reach out shortly.",
+    stat_students: "Success Stories",
+    stat_ielts: "IELTS Mastery",
+    stat_sat: "SAT Champions",
   },
   uz: {
     hero_title_1: "GLOBAL TA'LIMGA",
@@ -172,6 +175,9 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     apply_submit: "Arizani yuborish",
     apply_success_title: "ARIZA MUVAFFAQIYATLI YUBORILDI",
     apply_success_desc: "Sizning arizangiz qayd etildi. Tez orada akademik maslahatchi siz bilan bog'lanadi.",
+    stat_students: "Muvaffaqiyatlar",
+    stat_ielts: "IELTS natijalari",
+    stat_sat: "SAT chempionlari",
   },
   ru: {
     hero_title_1: "ВАШ ПУТЬ К",
@@ -254,6 +260,9 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     apply_submit: "Отправить Заявку",
     apply_success_title: "ЗАЯВКА УСПЕШНО ОТПРАВЛЕНА",
     apply_success_desc: "Ваша заявка зарегистрирована. Скоро с вами свяжется академический консультант.",
+    stat_students: "Успешные кейсы",
+    stat_ielts: "Средний балл IELTS",
+    stat_sat: "Результаты SAT",
   },
   ko: {
     hero_title_1: "글로벌 교육으로 가는",
@@ -336,6 +345,9 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     apply_submit: "지원서 제출",
     apply_success_title: "전송 성공",
     apply_success_desc: "지원서가 등록되었습니다. 곧 학업 상담원이 연락드릴 것입니다.",
+    stat_students: "성공 사례",
+    stat_ielts: "평균 IELTS 점수",
+    stat_sat: "SAT 성과",
   },
 };
 
