@@ -93,6 +93,9 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     stat_students: "Success Stories",
     stat_ielts: "IELTS Mastery",
     stat_sat: "SAT Champions",
+    banner_title: "FAST-TRACK ADMISSIONS",
+    banner_desc: "Guaranteed structural preparation with certified native experts and global admissions advisors. Transform your scores and secure your spot today.",
+    banner_btn: "Request consultation",
   },
   uz: {
     hero_title_1: "GLOBAL TA'LIMGA",
@@ -127,7 +130,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     faq_title: "Ko'p so'raladigan",
     faq_questions: "Savollar",
     hero_badge: "O'zbekistondagi yetakchi tayyorgarlik markazi",
-    cta_dream: "ORZU QILISHDAN TO'XTHANG.",
+    cta_dream: "ORZU QILISHDAN TO'XTANG.",
     cta_achieve: "ERISHISHNI BOSHLANG.",
     cta_spots: "Bahorgi qabul uchun joylar cheklangan. Dunyo darajasidagi universitetdagi kelajagingiz shu yerdan boshlanadi.",
     course_ielts: "IELTS Intensiv",
@@ -178,6 +181,9 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     stat_students: "Muvaffaqiyatlar",
     stat_ielts: "IELTS natijalari",
     stat_sat: "SAT chempionlari",
+    banner_title: "TEZKOR UNIVERSITETGA QABUL DASTURI",
+    banner_desc: "Sertifikatlangan mahalliy mutaxassislar va xalqaro universitet maslahatchilari bilan kafolatlangan tayyorgarlik. Arizangizni hozir yuboring.",
+    banner_btn: "Bepul maslahat olish",
   },
   ru: {
     hero_title_1: "ВАШ ПУТЬ К",
@@ -225,7 +231,7 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     footer_about: "Ведущая компания в Узбекистане по подготовке к тестам. Мы помогаем будущим лидерам занять места в престижных университетах мира.",
     footer_quick_links: "Быстрые ссылки",
     footer_contact_us: "Свяжитесь с нами",
-    footer_address: "Таш켄т, Узбекистан",
+    footer_address: "Ташкент, Узбекистан",
     teacher_umidjon_role: "Основатель и CEO",
     teacher_umidjon_bio: "Дальновидный лидер, стремящийся к трансформации образовательных стандартов.",
     teacher_dustyor_role: "Операционный менеджер",
@@ -263,6 +269,9 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     stat_students: "Успешные кейсы",
     stat_ielts: "Средний балл IELTS",
     stat_sat: "Результаты SAT",
+    banner_title: "БЫСТРЫЙ ПУТЬ К ПОСТУПЛЕНИЮ",
+    banner_desc: "Гарантированная подготовка с носителями языка и специалистами по международному поступлению. Начните свой путь к успеху сегодня.",
+    banner_btn: "Получить консультацию",
   },
   ko: {
     hero_title_1: "글로벌 교육으로 가는",
@@ -348,6 +357,9 @@ const translations: Record<LanguageCode, Record<string, string>> = {
     stat_students: "성공 사례",
     stat_ielts: "평균 IELTS 점수",
     stat_sat: "SAT 성과",
+    banner_title: "대학 입학 속성 프로그램",
+    banner_desc: "인증된 원어민 전문가 및 글로벌 입학 지원 어드바이저와 함께하는 우수한 시험 대비 학습 전략.",
+    banner_btn: "상담 요청하기",
   },
 };
 

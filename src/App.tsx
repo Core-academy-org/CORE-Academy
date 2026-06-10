@@ -26,29 +26,23 @@ export default function App() {
           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 italic">Trusted by</span>
         </div>
 
-        <div className="flex overflow-hidden py-10 relative group bg-white/[0.01] border-y border-white/5">
-          <motion.div 
-            className="flex items-center gap-24 whitespace-nowrap px-12"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ 
-              duration: 40, 
-              ease: "linear", 
-              repeat: Infinity 
-            }}
+        <div className="flex overflow-hidden py-10 relative group bg-white/[0.01] border-y border-white/5 pointer-events-auto">
+          <div 
+            className="flex items-center gap-24 whitespace-nowrap px-12 animate-marquee pause-hover"
           >
             {[...Array(2)].map((_, groupIdx) => (
               <div key={groupIdx} className="flex items-center gap-24">
                 {[
                   "British Council", "IDP IELTS", "Cambridge Assessment English", "Youth Affairs Agency", "Ministry of Education", "American Councils", "ETS TOEFL", "National University"
                 ].map((name, i) => (
-                  <div key={i} className="flex items-center gap-8 text-3xl md:text-5xl font-display font-black tracking-tighter uppercase text-white/10 hover:text-white transition-all duration-500 italic grayscale hover:grayscale-0 cursor-default">
-                    <div className="w-3 h-3 rounded-full bg-brand-cyan/20 group-hover:bg-brand-cyan transition-colors" />
+                  <div key={i} className="flex items-center gap-4 text-3xl md:text-5xl font-display font-black tracking-tighter uppercase text-white/10 hover:text-white transition-all duration-500 italic grayscale hover:grayscale-0 cursor-default">
+                    <div className="w-2.5 h-2.5 rounded-full bg-brand-cyan/25 group-hover:bg-brand-cyan transition-colors shrink-0" />
                     {name}
                   </div>
                 ))}
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -77,11 +71,12 @@ export default function App() {
               ].map((item, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="relative group p-8 glass rounded-[32px] border-white/5 hover:border-brand-cyan/30 transition-all hover:bg-brand-blue/5"
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.3, ease: "easeOut", delay: i * 0.04 }}
+                  style={{ willChange: "transform, opacity" }}
+                  className="relative group p-8 glass rounded-[32px] border-white/5 hover:border-brand-cyan/30 transition-all hover:bg-brand-blue/5 transform-gpu"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-brand-navy flex items-center justify-center mb-8 border border-white/10 group-hover:border-brand-cyan/50 transition-colors">
                     <item.icon className="text-brand-cyan w-6 h-6" />
@@ -107,9 +102,12 @@ export default function App() {
         <div className="absolute inset-0 bg-brand-blue/10 animate-pulse" />
         <div className="container max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="glass rounded-[60px] p-12 md:p-24 border-white/20 bg-brand-blue/10 shadow-[0_0_100px_rgba(37,99,235,0.1)]"
+            viewport={{ once: true, margin: "-20px" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            style={{ willChange: "transform, opacity" }}
+            className="glass rounded-[60px] p-12 md:p-24 border-white/20 bg-brand-blue/10 shadow-[0_0_100px_rgba(37,99,235,0.1)] transform-gpu"
           >
             <h2 className="text-4xl md:text-7xl font-display font-black italic mb-8 uppercase tracking-tighter leading-none italic">
               {t("cta_dream")} <br />
