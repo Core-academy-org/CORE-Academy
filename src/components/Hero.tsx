@@ -108,7 +108,7 @@ export default function Hero() {
           </div>
 
           {/* Glossy Overlay Cards - Outside overflow-hidden */}
-          <div className="absolute top-12 -left-8 md:-left-12 p-6 md:p-8 bg-white/[0.01] backdrop-blur-[40px] rounded-[40px] flex flex-col gap-4 shadow-2xl border border-white/5 z-20">
+          <div className="absolute top-12 -left-8 md:-left-12 p-6 md:p-8 bg-[#070d1e]/90 backdrop-blur-md rounded-[40px] flex flex-col gap-4 shadow-2xl border border-white/5 z-20 transition-all duration-300 transform-gpu">
             <div className="w-12 h-12 rounded-2xl bg-brand-cyan/10 flex items-center justify-center border border-white/10">
               <Target className="text-brand-cyan/60 w-6 h-6" />
             </div>
@@ -119,7 +119,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="absolute bottom-12 -right-8 md:-right-12 p-6 md:p-8 bg-white/[0.01] backdrop-blur-[40px] rounded-[40px] flex flex-col gap-4 shadow-2xl border border-white/5 z-20">
+          <div className="absolute bottom-12 -right-8 md:-right-12 p-6 md:p-8 bg-[#070d1e]/90 backdrop-blur-md rounded-[40px] flex flex-col gap-4 shadow-2xl border border-white/5 z-20 transition-all duration-300 transform-gpu">
             <div className="w-12 h-12 rounded-2xl bg-brand-orange/10 flex items-center justify-center border border-white/10">
               <Rocket className="text-brand-orange/60 w-6 h-6" />
             </div>

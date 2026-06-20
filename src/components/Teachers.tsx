@@ -7,25 +7,29 @@ const getTeachers = (t: (key: string) => string) => [
     name: "Umidjon Davlatov",
     role: t("teacher_umidjon_role"),
     bio: t("teacher_umidjon_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Umidjon+Davlatov&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
+    img: "https://api.dicebear.com/7.x/initials/svg?seed=Umidjon+Davlatov&backgroundColor=020617,1e293b,0d1527&textColor=06b6d4&fontSize=38&fontWeight=750",
     tags: ["Founder", "Strategist"]
   },
   {
-    name: "Asilbek To'xtaboyev",
-    role: t("teacher_Asilbek_role"),
-    bio: t("teacher_Asilbek_bio"),
+    name: "Ulmasov Dustyorkhon",
+    role: t("teacher_dustyor_role"),
+    bio: t("teacher_dustyor_bio"),
     img: "https://api.dicebear.com/7.x/initials/svg?seed=Ulmasov+Dustyorkhon&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
     tags: ["Manager", "Success Lead"]
   },
   {
-    name: "Bahodir Jo'rayev",
-    role: t("teacher_Bahodir_role"),
-    bio: t("teacher_Bahodir_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
-    tags: ["SAT 1190", "Top Universities grants"]
+    name: "Elena Petrova",
+    role: t("teacher_elena_role"),
+    bio: t("teacher_elena_bio"),
+    img: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
+    tags: ["Celta Certified", "IELTS 7"]
   },
   {
-
+    name: "Alisher Sodikov",
+    role: t("teacher_alisher_role"),
+    bio: t("teacher_alisher_bio"),
+    img: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
+    tags: ["SAT 1320", "Math Guru"]
   },
   {
     name: "Zebo Ganieva",
@@ -74,7 +78,10 @@ function TeacherCard({ teacher }: { teacher: any }) {
         <img 
           src={teacher.img} 
           alt={teacher.name} 
-          className="w-full h-full object-contain p-6 grayscale brightness-110 opacity-70 group-hover/card:grayscale-0 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-700"
+          className={cn(
+            "w-full h-full grayscale brightness-110 opacity-70 group-hover/card:grayscale-0 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-700",
+            typeof teacher.img === 'string' && teacher.img.includes("dicebear.com") ? "object-contain p-6" : "object-cover"
+          )}
           referrerPolicy="no-referrer"
         />
         

@@ -9,8 +9,8 @@ export default async function handler(
   try {
     const { name, telegram, phone, course } = req.body;
 
-    const botToken = process.env.TELEGRAM_BOT_TOKEN || "8681856242:AAHCUIImUdYvTcLqPWfVWwKNHOc7UqEt9aw";
-    const chatId = process.env.TELEGRAM_CHAT_ID || "8034737379";
+    const botToken = process.env.TELEGRAM_BOT_TOKEN || "8681856242:AAHGY8P9pcVZNo327LgGyZ3x4NsBtbaOWLs";
+    const chatId = process.env.TELEGRAM_CHAT_ID || "8681856242";
 
     const text = `
 <b>🚀 Yangi Arizachi!</b>
