@@ -11,25 +11,21 @@ const getTeachers = (t: (key: string) => string) => [
     tags: ["Founder", "Strategist"]
   },
   {
-    name: "Ulmasov Dustyorkhon",
-    role: t("teacher_dustyor_role"),
-    bio: t("teacher_dustyor_bio"),
+    name: "Asilbek To'xtaboyev",
+    role: t("teacher_Asilbek_role"),
+    bio: t("teacher_Asilbek_bio"),
     img: "https://api.dicebear.com/7.x/initials/svg?seed=Ulmasov+Dustyorkhon&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
     tags: ["Manager", "Success Lead"]
   },
   {
-    name: "Elena Petrova",
-    role: t("teacher_elena_role"),
-    bio: t("teacher_elena_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
-    tags: ["Celta Certified", "IELTS 7"]
+    name: "Bahodir Jo'rayev",
+    role: t("teacher_Bahodir_role"),
+    bio: t("teacher_Bahodir_bio"),
+    img: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
+    tags: ["SAT 1190", "Top Universities grants"]
   },
   {
-    name: "Alisher Sodikov",
-    role: t("teacher_alisher_role"),
-    bio: t("teacher_alisher_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
-    tags: ["SAT 1320", "Math Guru"]
+
   },
   {
     name: "Zebo Ganieva",
