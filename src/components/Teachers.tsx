@@ -8,7 +8,7 @@ const getTeachers = (t: (key: string) => string) => [
     name: "Umidjon Davlatov",
     role: t("teacher_umidjon_role"),
     bio: t("teacher_umidjon_bio"),
-    img:"../Umidjon.jpg"
+    img:"umid.jpg"
     tags: ["Founder", "Strategist"]
   },
   {
