@@ -6,7 +6,7 @@ import Teachers from "./components/Teachers";
 import FAQ from "./components/FAQ";
 import ApplicationForm from "./components/ApplicationForm";
 import Footer from "./components/Footer";
-import { Send, CheckCircle2, Star, Clock, MapPin, Globe, ArrowRight } from "lucide-react";
+import { Send, CheckCircle2, Star, Clock, MapPin, Globe, ArrowRight, Instagram } from "lucide-react";
 import { useLanguage } from "./contexts/LanguageContext";
 
 export default function App() {
@@ -134,15 +134,15 @@ export default function App() {
 
       <Footer />
       
-      {/* Floating Telegram Button */}
+      {/* Floating Instagram Button */}
       <a 
-        href="https://t.me/core_academy_edu" 
+        href="https://www.instagram.com/core_academy_edu" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-[#0088cc] shadow-2xl shadow-[#0088cc]/30 flex items-center justify-center text-white z-[9999] hover:scale-110 active:scale-95 transition-all group"
-        title="Chat on Telegram"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-2xl shadow-[#ee2a7b]/40 flex items-center justify-center text-white z-[9999] hover:scale-115 active:scale-95 hover:shadow-[#ee2a7b]/60 transition-all duration-300 group border border-white/20"
+        title="Follow us on Instagram"
       >
-        <Send className="w-6 h-6 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        <Instagram className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
       </a>
     </main>
   );

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "../lib/utils";
@@ -38,7 +39,6 @@ const getCourses = (t: (key: string) => string) => [
 
 export default function Courses() {
   const { t, language } = useLanguage();
-  const currentCourses = getCourses(t);
 
   const getCourseDetails = (id: string, lang: string) => {
     const data: Record<string, Record<string, { duration: string; lessons: string; format: string }>> = {
@@ -70,10 +70,17 @@ export default function Courses() {
     en: { col1: "Duration", col2: "Schedule", col3: "Assess Prep" },
     uz: { col1: "Davomiyligi", col2: "Darslar", col3: "Imtihon shakli" },
     ru: { col1: "Длительность", col2: "График", col3: "Подготовка" },
-    ko: { col1: "교육 기간", col2: "수업 일정", col3: "평가 방식" }
+    ko: { col1: "교육 기간", col2: "수업 일정", col3: "평га 방식" }
   };
 
   const activeLabels = labels[language as string] || labels["en"];
+  const currentCourses = getCourses(t);
+
+  const handleEnrollClick = (courseTitle: string) => {
+    const selectEvent = new CustomEvent("selectCourse", { detail: courseTitle });
+    window.dispatchEvent(selectEvent);
+    document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section id="courses" className="py-24 bg-brand-navy relative overflow-hidden">
@@ -101,7 +108,6 @@ export default function Courses() {
                 style={{ willChange: "transform, opacity" }}
               >
                 <div className="relative h-[480px] bg-[#070d1e]/80 border border-white/5 rounded-[32px] p-8 flex flex-col justify-between overflow-hidden transition-all duration-500 transform-gpu will-change-transform hover:bg-[#0c142c]/90 hover:border-white/12 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
-                  {/* Subtle hover gradient behind card - lightweight without filters */}
                   <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-bl from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
                   
                   <div>
@@ -118,7 +124,6 @@ export default function Courses() {
                       {course.desc}
                     </p>
 
-                    {/* Integrated clean Course specifications list inside the card border */}
                     <div className="mt-6 grid grid-cols-3 gap-2 border-y border-white/5 py-4 text-left">
                       <div>
                         <span className="block text-[8px] font-black uppercase text-white/20 tracking-wider mb-1">{activeLabels.col1}</span>
@@ -148,7 +153,7 @@ export default function Courses() {
                         {course.outcome}
                       </div>
                       <button 
-                        onClick={() => document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => handleEnrollClick(course.title)}
                         className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 transition-all duration-500 hover:scale-105 active:scale-95 hover:bg-white hover:border-white group-hover:border-white"
                       >
                         <ArrowUpRight className="w-4 h-4 text-white group-hover:text-brand-navy transition-all duration-500 group-hover:rotate-45" />

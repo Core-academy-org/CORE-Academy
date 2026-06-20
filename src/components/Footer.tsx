@@ -81,7 +81,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="text-brand-cyan/40 w-5 h-5 shrink-0" />
-                <a href="mailto:info@coreacademy.uz" className="text-white/40 hover:text-white transition-colors text-sm font-bold italic">info@coreacademy.uz</a>
+                <a href="mailto:coreacademy77@gmail.com" className="text-white/40 hover:text-white transition-colors text-sm font-bold italic">coreacademy77@gmail.com</a>
               </li>
             </ul>
           </div>

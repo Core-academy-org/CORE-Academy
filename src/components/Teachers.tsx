@@ -1,13 +1,14 @@
 import { useLanguage } from "../contexts/LanguageContext";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { cn } from "../lib/utils";
+import { motion } from "motion/react";
 
 const getTeachers = (t: (key: string) => string) => [
   {
     name: "Umidjon Davlatov",
     role: t("teacher_umidjon_role"),
-    bio: t("teacher_umidjon_bio"), 
-img:"UmidjonDavlatov.jpg",
+    bio: t("teacher_umidjon_bio"),
+    img: "https://api.dicebear.com/7.x/initials/svg?seed=Umidjon+Davlatov&backgroundColor=020617,1e293b,0d1527&textColor=06b6d4&fontSize=38&fontWeight=750",
     tags: ["Founder", "Strategist"]
   },
   {
@@ -103,7 +104,7 @@ function TeacherCard({ teacher }: { teacher: any }) {
 
         {/* Absolute Smooth Slide-Up Bio (Takes zero document reflow, zero-lag) */}
         <div className={cn(
-          "absolute inset-0 bg-brand-navy/95 backdrop-blur-md p-6 flex flex-col justify-between transition-all duration-500 border border-white/15 rounded-[32px] md:rounded-[40px] z-30",
+          "absolute inset-0 bg-brand-navy/75 backdrop-blur-md p-6 flex flex-col justify-between transition-all duration-500 border border-white/15 rounded-[32px] md:rounded-[40px] z-30",
           isExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12 pointer-events-none"
         )}>
           <div>
@@ -126,12 +127,155 @@ function TeacherCard({ teacher }: { teacher: any }) {
 export default function Teachers() {
   const { t } = useLanguage();
   const currentTeachers = getTeachers(t);
-  const doubledTeachers = [...currentTeachers, ...currentTeachers];
+  
+  // Triple the list to make dragging in either direction extremely smooth
+  const tripledTeachers = [...currentTeachers, ...currentTeachers, ...currentTeachers];
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Tracking drag & scrolling
+  const isDragging = useRef(false);
+  const lastX = useRef(0);
+  const dragDistanceRef = useRef(0);
+  const blockClickRef = useRef(false);
+  const animationFrameId = useRef<number | null>(null);
+  const scrollLeftPos = useRef(0);
+  const isHovered = useRef(false);
+
+  // Drag Handlers
+  const handleDragStart = (clientX: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    isDragging.current = true;
+    isHovered.current = true;
+    lastX.current = clientX;
+    dragDistanceRef.current = 0;
+  };
+
+  const handleDragMove = (clientX: number) => {
+    if (!isDragging.current) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const dx = clientX - lastX.current;
+    container.scrollLeft -= dx;
+    
+    // Smoothly synchronize our subpixel tracker with the physical scroll offset
+    scrollLeftPos.current = container.scrollLeft;
+    
+    lastX.current = clientX;
+    dragDistanceRef.current += Math.abs(dx);
+  };
+
+  const handleDragEnd = () => {
+    if (dragDistanceRef.current > 6) {
+      blockClickRef.current = true;
+    }
+    isDragging.current = false;
+    isHovered.current = false;
+    if (containerRef.current) {
+      scrollLeftPos.current = containerRef.current.scrollLeft;
+    }
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let localLastTime = performance.now();
+    let hasInitialized = false;
+
+    const updateScroll = (time: number) => {
+      if (!container) return;
+
+      const delta = time - localLastTime;
+      localLastTime = time;
+
+      const scrollW = container.scrollWidth;
+      const singleW = scrollW / 3;
+
+      // Handle delayed layout measurement. Start from 0 so it begins with Umidjon Davlatov
+      if (scrollW > 0 && !hasInitialized) {
+        container.scrollLeft = 0;
+        scrollLeftPos.current = 0;
+        hasInitialized = true;
+      }
+
+      // Continuous programmatic scroll (0.04px per ms is steady and elegant)
+      if (!isDragging.current && !isHovered.current) {
+        scrollLeftPos.current += 0.04 * delta;
+      }
+
+      // Completely seamless infinite loop wrap boundaries:
+      if (scrollW > 0) {
+        if (scrollLeftPos.current >= singleW) {
+          scrollLeftPos.current = scrollLeftPos.current % singleW;
+        } else if (scrollLeftPos.current < 0) {
+          scrollLeftPos.current = (scrollLeftPos.current % singleW + singleW) % singleW;
+        }
+
+        if (!isDragging.current) {
+          container.scrollLeft = Math.round(scrollLeftPos.current);
+        }
+      }
+
+      animationFrameId.current = requestAnimationFrame(updateScroll);
+    };
+
+    animationFrameId.current = requestAnimationFrame(updateScroll);
+
+    // Global drag event listeners so that releasing anywhere on the screen yields a correct scroll resumption
+    const handleGlobalMove = (e: MouseEvent) => {
+      if (isDragging.current) {
+        handleDragMove(e.clientX);
+      }
+    };
+
+    const handleGlobalUp = () => {
+      if (isDragging.current) {
+        handleDragEnd();
+      }
+    };
+
+    const handleGlobalTouchMove = (e: TouchEvent) => {
+      if (isDragging.current && e.touches[0]) {
+        handleDragMove(e.touches[0].clientX);
+      }
+    };
+
+    const handleGlobalTouchEnd = () => {
+      if (isDragging.current) {
+        handleDragEnd();
+      }
+    };
+
+    window.addEventListener("mousemove", handleGlobalMove);
+    window.addEventListener("mouseup", handleGlobalUp);
+    window.addEventListener("touchmove", handleGlobalTouchMove, { passive: true });
+    window.addEventListener("touchend", handleGlobalTouchEnd);
+
+    return () => {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+      window.removeEventListener("mousemove", handleGlobalMove);
+      window.removeEventListener("mouseup", handleGlobalUp);
+      window.removeEventListener("touchmove", handleGlobalTouchMove);
+      window.removeEventListener("touchend", handleGlobalTouchEnd);
+    };
+  }, [currentTeachers.length]);
 
   return (
     <section id="teachers" className="py-24 bg-brand-navy/30 relative overflow-hidden">
       <div className="container max-w-7xl mx-auto px-6 mb-16">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-8"
+        >
           <div className="max-w-2xl">
             <div 
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan font-bold tracking-[0.2em] text-[10px] uppercase mb-6"
@@ -152,16 +296,54 @@ export default function Teachers() {
           >
             {t("teachers_description")}
           </p>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="relative flex overflow-hidden w-full select-none">
-        <div className="flex gap-6 whitespace-nowrap py-4 px-4 animate-marquee pause-hover items-start">
-          {doubledTeachers.map((teacher, i) => (
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
+        className="relative flex overflow-hidden w-full select-none"
+        onMouseEnter={() => {
+          isHovered.current = true;
+        }}
+        onMouseLeave={() => {
+          isHovered.current = false;
+        }}
+        onTouchStart={() => {
+          isHovered.current = true;
+        }}
+        onTouchEnd={() => {
+          isHovered.current = false;
+        }}
+      >
+        <div
+          ref={containerRef}
+          className="flex gap-6 overflow-x-auto scrollbar-none py-4 px-4 items-start cursor-grab active:cursor-grabbing w-full"
+          onMouseDown={(e) => {
+            if (e.button === 0) {
+              handleDragStart(e.clientX);
+            }
+          }}
+          onTouchStart={(e) => {
+            if (e.touches[0]) {
+              handleDragStart(e.touches[0].clientX);
+            }
+          }}
+          onClickCapture={(e) => {
+            if (blockClickRef.current) {
+              e.stopPropagation();
+              e.preventDefault();
+              blockClickRef.current = false;
+            }
+          }}
+        >
+          {tripledTeachers.map((teacher, i) => (
             <TeacherCard key={`${teacher.name}-${i}`} teacher={teacher} />
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

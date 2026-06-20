@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Send, Phone, User, CheckCircle2, Loader2, Sparkles, SendHorizontal } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -14,6 +14,17 @@ export default function ApplicationForm() {
     phone: "",
     course: "IELTS Intensive"
   });
+
+  useEffect(() => {
+    const handleSelectCourse = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        setFormData(prev => ({ ...prev, course: customEvent.detail }));
+      }
+    };
+    window.addEventListener("selectCourse", handleSelectCourse);
+    return () => window.removeEventListener("selectCourse", handleSelectCourse);
+  }, []);
   const [errors, setErrors] = useState({
     telegram: "",
     phone: ""
@@ -237,6 +248,14 @@ export default function ApplicationForm() {
                         onChange={e => setFormData({...formData, course: e.target.value})}
                         className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-4 text-white focus:outline-none focus:border-brand-cyan/50 transition-colors appearance-none font-bold italic"
                       >
+                        {formData.course !== "IELTS Intensive" && 
+                         formData.course !== "SAT Masterclass" && 
+                         formData.course !== "TOPIK Prep" && 
+                         formData.course !== "General English" && (
+                          <option value={formData.course} className="bg-brand-navy">
+                            {formData.course}
+                          </option>
+                        )}
                         <option value="IELTS Intensive" className="bg-brand-navy">IELTS Intensive</option>
                         <option value="SAT Masterclass" className="bg-brand-navy">SAT Masterclass</option>
                         <option value="TOPIK Prep" className="bg-brand-navy">TOPIK Prep</option>
