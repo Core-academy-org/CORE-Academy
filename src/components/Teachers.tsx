@@ -12,9 +12,9 @@ const getTeachers = (t: (key: string) => string) => [
   },
   {
     name: "Asilbek To'xtaboyev",
-    role: t("teacher_Asilbek_role"),
-    bio: t("teacher_Asilbek_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Ulmasov+Dustyorkhon&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
+    role: t("teacher_dustyor_role"),
+    bio: t("teacher_dustyor_bio"),
+    img: "https://api.dicebear.com/7.x/initials/svg?seed=Asilbek+To'xtaboyev&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
     tags: ["Manager", "Success Lead"]
   },
   {

@@ -2,5 +2,5 @@
   "name": "Core Academy",
   "description": "Premium educational center in Uzbekistan specializing in IELTS, SAT, and TOPIK preparation. High-converting, modern, and student-focused.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
