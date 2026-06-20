@@ -19,18 +19,18 @@ const getTeachers = (t: (key: string) => string) => [
     tags: ["Manager", "Success Lead"]
   },
   {
-    name: "Elena Petrova",
-    role: t("teacher_elena_role"),
-    bio: t("teacher_elena_bio"),
+    name: "Marjona Avazova",
+    role: t("teacher_Marjona_role"),
+    bio: t("teacher_Marjona_bio"),
     img: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
-    tags: ["Celta Certified", "IELTS 7"]
+    tags: ["5 years experience", "Topic 3"]
   },
   {
-    name: "Alisher Sodikov",
-    role: t("teacher_alisher_role"),
-    bio: t("teacher_alisher_bio"),
+    name: "Bahodir Jo'rayev",
+    role: t("teacher_Bahodir_role"),
+    bio: t("teacher_Bahodir_bio"),
     img: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
-    tags: ["SAT 1320", "Math Guru"]
+    tags: ["SAT 1190","IELTS 6", "2 years experience"]
   },
   {
     name: "Zebo Ganieva",
