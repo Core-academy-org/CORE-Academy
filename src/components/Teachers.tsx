@@ -13,7 +13,7 @@ const getTeachers = (t: (key: string) => string) => [
     tags: ["Founder", "Strategist"]
   },
   {
-    name: "Asilbek To'xtaboyev",
+    name: "Asilbek To'xtayev",
     role: t("teacher_dustyor_role"),
     bio: t("teacher_dustyor_bio"),
     img: "/asilbek.jpg",
