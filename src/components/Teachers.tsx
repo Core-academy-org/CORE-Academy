@@ -8,7 +8,7 @@ const getTeachers = (t: (key: string) => string) => [
     name: "Umidjon Davlatov",
     role: t("teacher_umidjon_role"),
     bio: t("teacher_umidjon_bio"),
-    img: "/teachers/umidjon.jpg",
+    img: "/umid.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Umidjon+Davlatov&backgroundColor=020617,1e293b,0d1527&textColor=06b6d4&fontSize=38&fontWeight=750",
     tags: ["Founder", "Strategist"]
   },
@@ -16,7 +16,7 @@ const getTeachers = (t: (key: string) => string) => [
     name: "Asilbek To'xtaboyev",
     role: t("teacher_dustyor_role"),
     bio: t("teacher_dustyor_bio"),
-    img: "/teachers/asilbek.jpg",
+    img: "/asilbek.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Asilbek+To'xtaboyev&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
     tags: ["Manager", "Success Lead"]
   },
