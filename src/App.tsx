@@ -26,12 +26,13 @@ export default function App() {
           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 italic">Trusted by</span>
         </div>
 
-        <div className="flex overflow-hidden py-10 relative group bg-white/[0.01] border-y border-white/5 pointer-events-auto">
-          <div 
-            className="flex items-center gap-24 whitespace-nowrap px-12 animate-marquee pause-hover"
-          >
+        <div className="relative w-full overflow-hidden py-10 bg-white/[0.01] border-y border-white/5 pointer-events-auto">
+          <div className="flex w-max animate-marquee pause-hover">
             {[...Array(2)].map((_, groupIdx) => (
-              <div key={groupIdx} className="flex items-center gap-24">
+              <div 
+                key={groupIdx} 
+                className="flex items-center gap-12 md:gap-24 shrink-0 pr-12 md:pr-24"
+              >
                 {[
                   "British Council", "IDP IELTS", "Cambridge Assessment English", "Youth Affairs Agency", "Ministry of Education", "American Councils", "ETS TOEFL", "National University"
                 ].map((name, i) => (

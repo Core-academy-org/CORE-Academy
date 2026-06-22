@@ -9,19 +9,30 @@ export default async function handler(
   try {
     const { name, telegram, phone, course } = req.body;
 
-    const botToken = process.env.TELEGRAM_BOT_TOKEN || "AAHGY8P9pcVZNo327LgGyZ3x4NsBtbaOWLs";
+    let botToken = process.env.TELEGRAM_BOT_TOKEN || "8681856242:AAHGY8P9pcVZNo327LgGyZ3x4NsBtbaOWLs";
     const chatId = process.env.TELEGRAM_CHAT_ID || "8681856242";
 
-    const text = `
-<b>🚀 Yangi Arizachi!</b>
+    // Auto prepend the standard bot ID prefix if the user set a token without the colon divider
+    if (botToken && !botToken.includes(":")) {
+      botToken = `8681856242:${botToken}`;
+    }
 
-<b>👤 Ism:</b> ${name}
-<b>📱 Telegram:</b> ${telegram}
-<b>📞 Telefon:</b> ${phone}
-<b>📚 Kurs:</b> ${course}
+    const escapeHtml = (unsafe: string) => {
+      if (!unsafe) return "";
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    };
 
-#ariza #coreacademy
-    `;
+    const cleanName = escapeHtml(name || "");
+    const cleanTelegram = escapeHtml(telegram || "");
+    const cleanPhone = escapeHtml(phone || "");
+    const cleanCourse = escapeHtml(course || "");
+
+    const text = `<b>🚀 Yangi Arizachi!</b>\n\n<b>👤 Ism:</b> ${cleanName}\n<b>📱 Telegram:</b> ${cleanTelegram}\n<b>📞 Telefon:</b> ${cleanPhone}\n<b>📚 Kurs:</b> ${cleanCourse}\n\n#ariza #coreacademy`;
 
     // Use native fetch (available in Node 18+)
     const response = await fetch(

@@ -8,29 +8,29 @@ const getTeachers = (t: (key: string) => string) => [
     name: "Umidjon Davlatov",
     role: t("teacher_umidjon_role"),
     bio: t("teacher_umidjon_bio"),
-    img:"Umidjon.jpg"
+    img: "https://api.dicebear.com/7.x/initials/svg?seed=Umidjon+Davlatov&backgroundColor=020617,1e293b,0d1527&textColor=06b6d4&fontSize=38&fontWeight=750",
     tags: ["Founder", "Strategist"]
   },
   {
     name: "Asilbek To'xtaboyev",
     role: t("teacher_dustyor_role"),
     bio: t("teacher_dustyor_bio"),
-    img: "asilbek.jpg",
+    img: "https://api.dicebear.com/7.x/initials/svg?seed=Asilbek+To'xtaboyev&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
     tags: ["Manager", "Success Lead"]
   },
   {
-    name: "Marjona Avazova",
-    role: t("SEOUL SMART EDUCATION Head Administrator"),
-    bio: t("Eng sodiq jamoamiz a'zosi har qanday vaqtda ham biz bilan bo'lgan kreativ va hushchaqchaq odam"),
+    name: "Elena Petrova",
+    role: t("teacher_elena_role"),
+    bio: t("teacher_elena_bio"),
     img: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
-    tags: ["5 years experience", "Topic 3"]
+    tags: ["Celta Certified", "IELTS 7"]
   },
   {
-    name: "Bahodir Jo'rayev",
-    role: t("SAT Tutor"),
-    bio: t("IELTS 6.0 | Founder( UMID PARVOZI , MIS-Milliy Ilm Suhbati)| AI Prompt Engineer | PIIMA Bitiruvchisi | Young Peace Ambassadors Japan|"),
+    name: "Alisher Sodikov",
+    role: t("teacher_alisher_role"),
+    bio: t("teacher_alisher_bio"),
     img: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
-    tags: ["SAT 1190","IELTS 6", "2 years experience"]
+    tags: ["SAT 1320", "Math Guru"]
   },
   {
     name: "Zebo Ganieva",
@@ -135,22 +135,24 @@ export default function Teachers() {
   
   // Tracking drag & scrolling
   const isDragging = useRef(false);
+  const isTouching = useRef(false);
   const lastX = useRef(0);
   const dragDistanceRef = useRef(0);
   const blockClickRef = useRef(false);
   const animationFrameId = useRef<number | null>(null);
   const scrollLeftPos = useRef(0);
   const isHovered = useRef(false);
+  const lastInteractionTime = useRef(0);
 
-  // Drag Handlers
+  // Drag Handlers for Desktop Mouse
   const handleDragStart = (clientX: number) => {
     const container = containerRef.current;
     if (!container) return;
 
     isDragging.current = true;
-    isHovered.current = true;
     lastX.current = clientX;
     dragDistanceRef.current = 0;
+    lastInteractionTime.current = performance.now();
   };
 
   const handleDragMove = (clientX: number) => {
@@ -161,11 +163,9 @@ export default function Teachers() {
     const dx = clientX - lastX.current;
     container.scrollLeft -= dx;
     
-    // Smoothly synchronize our subpixel tracker with the physical scroll offset
-    scrollLeftPos.current = container.scrollLeft;
-    
     lastX.current = clientX;
     dragDistanceRef.current += Math.abs(dx);
+    lastInteractionTime.current = performance.now();
   };
 
   const handleDragEnd = () => {
@@ -173,10 +173,7 @@ export default function Teachers() {
       blockClickRef.current = true;
     }
     isDragging.current = false;
-    isHovered.current = false;
-    if (containerRef.current) {
-      scrollLeftPos.current = containerRef.current.scrollLeft;
-    }
+    lastInteractionTime.current = performance.now();
   };
 
   useEffect(() => {
@@ -195,28 +192,48 @@ export default function Teachers() {
       const scrollW = container.scrollWidth;
       const singleW = scrollW / 3;
 
-      // Handle delayed layout measurement. Start from 0 so it begins with Umidjon Davlatov
+      // Handle delayed layout measurement. Start from singleW (centered copy)
       if (scrollW > 0 && !hasInitialized) {
-        container.scrollLeft = 0;
-        scrollLeftPos.current = 0;
+        container.scrollLeft = singleW;
+        scrollLeftPos.current = singleW;
         hasInitialized = true;
       }
 
-      // Continuous programmatic scroll (0.04px per ms is steady and elegant)
-      if (!isDragging.current && !isHovered.current) {
-        scrollLeftPos.current += 0.04 * delta;
-      }
+      const now = performance.now();
+      const timeSinceInteraction = now - lastInteractionTime.current;
 
-      // Completely seamless infinite loop wrap boundaries:
-      if (scrollW > 0) {
-        if (scrollLeftPos.current >= singleW) {
-          scrollLeftPos.current = scrollLeftPos.current % singleW;
-        } else if (scrollLeftPos.current < 0) {
-          scrollLeftPos.current = (scrollLeftPos.current % singleW + singleW) % singleW;
+      // Auto-scrolling is paused immediately upon mouse hover, mouse dragging, or finger touches, letting users interact, drag, and shake it freely.
+      const allowAutoScroll = 
+        !isDragging.current && 
+        !isTouching.current && 
+        !isHovered.current;
+
+      if (allowAutoScroll && singleW > 0) {
+        // Continuous right-to-left infinite motion: 0.06px/ms (super smooth, premium & legible)
+        scrollLeftPos.current += 0.06 * delta;
+
+        // Perfect wrap loop when auto-scrolling
+        if (scrollLeftPos.current >= singleW * 2) {
+          scrollLeftPos.current -= singleW;
+        } else if (scrollLeftPos.current < singleW) {
+          scrollLeftPos.current += singleW;
         }
 
-        if (!isDragging.current) {
-          container.scrollLeft = Math.round(scrollLeftPos.current);
+        container.scrollLeft = Math.round(scrollLeftPos.current);
+      } else {
+        // Keep coordinate tracker perfectly synchronized with actual scrolling position when dragging
+        scrollLeftPos.current = container.scrollLeft;
+
+        // Perform instant wrapper loop during active manual dragging at extreme boundaries
+        if (singleW > 0) {
+          const currentScroll = container.scrollLeft;
+          if (currentScroll >= singleW * 2) {
+            container.scrollLeft = currentScroll - singleW;
+            scrollLeftPos.current = container.scrollLeft;
+          } else if (currentScroll < singleW) {
+            container.scrollLeft = currentScroll + singleW;
+            scrollLeftPos.current = container.scrollLeft;
+          }
         }
       }
 
@@ -225,10 +242,47 @@ export default function Teachers() {
 
     animationFrameId.current = requestAnimationFrame(updateScroll);
 
-    // Global drag event listeners so that releasing anywhere on the screen yields a correct scroll resumption
+    // Simple scroll listener to register user activity
+    const handleScroll = () => {
+      lastInteractionTime.current = performance.now();
+    };
+
+    // Active touch event handlers for precise drag-to-shake movement on touchscreens (phones)
+    const handleTouchStart = (e: TouchEvent) => {
+      isTouching.current = true;
+      lastInteractionTime.current = performance.now();
+      if (e.touches && e.touches[0]) {
+        handleDragStart(e.touches[0].clientX);
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      lastInteractionTime.current = performance.now();
+      if (isDragging.current && e.touches && e.touches[0]) {
+        // Prevent default browser movement (like back/forward gestures) to allow smooth carousel dragging/shaking
+        if (e.cancelable) {
+          e.preventDefault();
+        }
+        handleDragMove(e.touches[0].clientX);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isTouching.current = false;
+      lastInteractionTime.current = performance.now();
+      handleDragEnd();
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    container.addEventListener("touchstart", handleTouchStart, { passive: true });
+    container.addEventListener("touchmove", handleTouchMove, { passive: false });
+    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+    container.addEventListener("touchcancel", handleTouchEnd, { passive: true });
+
+    // Global drag event listeners for Desktop Mouse
     const handleGlobalMove = (e: MouseEvent) => {
       if (isDragging.current) {
-        handleDragMove(e.clientX);
+        handleGlobalMoveAction(e.clientX);
       }
     };
 
@@ -238,31 +292,25 @@ export default function Teachers() {
       }
     };
 
-    const handleGlobalTouchMove = (e: TouchEvent) => {
-      if (isDragging.current && e.touches[0]) {
-        handleDragMove(e.touches[0].clientX);
-      }
-    };
-
-    const handleGlobalTouchEnd = () => {
-      if (isDragging.current) {
-        handleDragEnd();
-      }
+    // Helper wrapper to avoid referencing variables declared after hook initialization
+    const handleGlobalMoveAction = (clientX: number) => {
+      handleDragMove(clientX);
     };
 
     window.addEventListener("mousemove", handleGlobalMove);
     window.addEventListener("mouseup", handleGlobalUp);
-    window.addEventListener("touchmove", handleGlobalTouchMove, { passive: true });
-    window.addEventListener("touchend", handleGlobalTouchEnd);
 
     return () => {
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
+      container.removeEventListener("scroll", handleScroll);
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
+      container.removeEventListener("touchcancel", handleTouchEnd);
       window.removeEventListener("mousemove", handleGlobalMove);
       window.removeEventListener("mouseup", handleGlobalUp);
-      window.removeEventListener("touchmove", handleGlobalTouchMove);
-      window.removeEventListener("touchend", handleGlobalTouchEnd);
     };
   }, [currentTeachers.length]);
 
@@ -306,15 +354,11 @@ export default function Teachers() {
         transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
         className="relative flex overflow-hidden w-full select-none"
         onMouseEnter={() => {
-          isHovered.current = true;
+          if (window.matchMedia("(hover: hover)").matches) {
+            isHovered.current = true;
+          }
         }}
         onMouseLeave={() => {
-          isHovered.current = false;
-        }}
-        onTouchStart={() => {
-          isHovered.current = true;
-        }}
-        onTouchEnd={() => {
           isHovered.current = false;
         }}
       >
@@ -324,11 +368,6 @@ export default function Teachers() {
           onMouseDown={(e) => {
             if (e.button === 0) {
               handleDragStart(e.clientX);
-            }
-          }}
-          onTouchStart={(e) => {
-            if (e.touches[0]) {
-              handleDragStart(e.touches[0].clientX);
             }
           }}
           onClickCapture={(e) => {

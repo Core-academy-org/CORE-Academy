@@ -237,24 +237,35 @@ Strict Schema guidelines:
   app.post("/api/apply", async (req, res) => {
     const { name, telegram, phone, course } = req.body;
 
-    const botToken = process.env.TELEGRAM_BOT_TOKEN || "8681856242:AAHGY8P9pcVZNo327LgGyZ3x4NsBtbaOWLs";
+    let botToken = process.env.TELEGRAM_BOT_TOKEN || "8681856242:AAHGY8P9pcVZNo327LgGyZ3x4NsBtbaOWLs";
     const chatId = process.env.TELEGRAM_CHAT_ID || "8681856242";
+
+    // Auto prepend the standard bot ID prefix if the user set a token without the colon divider
+    if (botToken && !botToken.includes(":")) {
+      botToken = `8681856242:${botToken}`;
+    }
 
     if (!botToken || !chatId) {
       console.warn("Telegram Token or Chat ID missing. Check environment variables.");
       return res.status(200).json({ success: true, message: "Simulation Mode: Configuration missing" });
     }
 
-    const text = `
-🆕 *New Application Received*
+    const escapeHtml = (unsafe: string) => {
+      if (!unsafe) return "";
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    };
 
-👤 *Name:* ${name}
-📱 *Telegram:* @${telegram.replace('@', '')}
-📞 *Phone:* ${phone}
-🎓 *Course:* ${course}
+    const cleanName = escapeHtml(name || "");
+    const cleanTelegram = escapeHtml(telegram || "");
+    const cleanPhone = escapeHtml(phone || "");
+    const cleanCourse = escapeHtml(course || "");
 
-Core Academy Registration System
-    `;
+    const text = `<b>🚀 Yangi Arizachi!</b>\n\n<b>👤 Ism:</b> ${cleanName}\n<b>📱 Telegram:</b> ${cleanTelegram}\n<b>📞 Telefon:</b> ${cleanPhone}\n<b>📚 Kurs:</b> ${cleanCourse}\n\n#ariza #coreacademy`;
 
     try {
       const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -265,18 +276,21 @@ Core Academy Registration System
         body: JSON.stringify({
           chat_id: chatId,
           text: text,
-          parse_mode: "Markdown",
+          parse_mode: "HTML",
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Telegram API responded with error");
+      const responseData: any = await response.json();
+
+      if (!response.ok || !responseData.ok) {
+        console.error("Telegram API Error Response:", responseData);
+        throw new Error(responseData.description || "Telegram API error");
       }
 
       res.status(200).json({ success: true });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Telegram Error:", error);
-      res.status(500).json({ success: false, error: "Failed to send notification" });
+      res.status(500).json({ success: false, error: error.message || "Failed to send notification" });
     }
   });
 
