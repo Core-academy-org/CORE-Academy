@@ -22,7 +22,7 @@ const getTeachers = (t: (key: string) => string) => [
   },
   {
     name: "Marjona Avazova",
-    role: t("teacher_Marjona_role"),
+    role: t("Head Administartor at Seoul smart education"),
     bio: t("teacher_Marjona_bio"),
     img: "/teachers/elena.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
@@ -30,11 +30,11 @@ const getTeachers = (t: (key: string) => string) => [
   },
   {
     name: "Bahodir Jo'rayev",
-    role: t("teacher_Bahodir_role"),
+    role: t("SAT Master"),
     bio: t("teacher_Bahodir_bio"),
     img: "/teachers/alisher.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
-    tags: ["SAT 1190", "SAT Tutor"]
+    tags: ["SAT 1190", "CEO of Nova team"]
   },
   {
     name: "Zebo Ganieva",
