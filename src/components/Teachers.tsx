@@ -37,12 +37,12 @@ const getTeachers = (t: (key: string) => string) => [
     tags: ["SAT 1190", "CEO of Nova team"]
   },
   {
-    name: "Zebo Ganieva",
+    name: "Anna Alekseevna",
     role: t("teacher_zebo_role"),
     bio: t("teacher_zebo_bio"),
     img: "/teachers/zebo.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Zebo+Ganieva&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
-    tags: ["TOEFL 110", "Academic English"]
+    tags: ["5 years experience", "Academic Russian"]
   },
   {
     name: "Malika Karimova",
