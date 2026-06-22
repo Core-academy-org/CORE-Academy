@@ -11,7 +11,7 @@ const getCourses = (t: (key: string) => string) => [
     desc: t("course_ielts_desc"),
     accent: "bg-brand-blue",
     accentColor: "from-brand-blue/20 to-brand-blue/0",
-    result: "8.5 BAND",
+    result: "7.5 BAND",
     tags: ["British Council", "IDP"],
     outcome: "Global University Readiness"
   },
@@ -21,7 +21,7 @@ const getCourses = (t: (key: string) => string) => [
     desc: t("course_sat_desc"),
     accent: "bg-brand-orange",
     accentColor: "from-brand-orange/20 to-brand-orange/0",
-    result: "1580+",
+    result: "1300+",
     tags: ["Digital SAT", "Math", "Reading"],
     outcome: "Ivy League Standard"
   },
@@ -31,7 +31,7 @@ const getCourses = (t: (key: string) => string) => [
     desc: t("course_topik_desc"),
     accent: "bg-brand-cyan",
     accentColor: "from-brand-cyan/20 to-brand-cyan/0",
-    result: "Level 6",
+    result: "Level 3",
     tags: ["Korean", "GKS Scholarship"],
     outcome: "GKS Scholarship Success"
   }
