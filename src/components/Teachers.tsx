@@ -39,7 +39,7 @@ const getTeachers = (t: (key: string) => string) => [
   {
     name: "Anna Alekseevna",
     role: t("Russian Tutor"),
-    bio: t("teacher_zebo_bio"),
+    bio: t("teacher_Anna_bio"),
     img: "/teachers/zebo.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Zebo+Ganieva&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
     tags: ["5 years experience", "Academic Russian"]
