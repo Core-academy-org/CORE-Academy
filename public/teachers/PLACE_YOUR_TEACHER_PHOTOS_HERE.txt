@@ -1,0 +1,16 @@
+HOW TO UPLOAD TEACHER PHOTOS:
+-----------------------------
+
+Simply upload your teacher's photo files into this folder with the following filenames:
+
+1. Umidjon Davlatov    -> umidjon.jpg  (or umidjon.png / umidjon.jpeg)
+2. Asilbek To'xtaboyev  -> asilbek.jpg  (or asilbek.png / asilbek.jpeg)
+3. Elena Petrova       -> elena.jpg    (or elena.png / elena.jpeg)
+4. Alisher Sodikov     -> alisher.jpg  (or alisher.png / alisher.jpeg)
+5. Zebo Ganieva        -> zebo.jpg     (or zebo.png / zebo.jpeg)
+6. Malika Karimova     -> malika.jpg   (or malika.png / malika.jpeg)
+7. James Wilson        -> james.jpg    (or james.png / james.jpeg)
+8. Sara Kim            -> sara.jpg     (or sara.png / sara.jpeg)
+
+If you upload a .png or .jpeg, the website will automatically detect and display it!
+While no photo is uploaded, a beautiful monogram avatar will automatically be shown as a fallback.

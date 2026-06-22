@@ -8,80 +8,106 @@ const getTeachers = (t: (key: string) => string) => [
     name: "Umidjon Davlatov",
     role: t("teacher_umidjon_role"),
     bio: t("teacher_umidjon_bio"),
-    img: "/umid.jpg",
+    img: "/teachers/umidjon.jpg",
+    fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Umidjon+Davlatov&backgroundColor=020617,1e293b,0d1527&textColor=06b6d4&fontSize=38&fontWeight=750",
     tags: ["Founder", "Strategist"]
   },
   {
     name: "Asilbek To'xtaboyev",
     role: t("teacher_dustyor_role"),
     bio: t("teacher_dustyor_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Asilbek+To'xtaboyev&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
+    img: "/teachers/asilbek.jpg",
+    fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Asilbek+To'xtaboyev&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
     tags: ["Manager", "Success Lead"]
   },
   {
     name: "Elena Petrova",
     role: t("teacher_elena_role"),
     bio: t("teacher_elena_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
+    img: "/teachers/elena.jpg",
+    fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
     tags: ["Celta Certified", "IELTS 7"]
   },
   {
     name: "Alisher Sodikov",
     role: t("teacher_alisher_role"),
     bio: t("teacher_alisher_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
+    img: "/teachers/alisher.jpg",
+    fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
     tags: ["SAT 1320", "Math Guru"]
   },
   {
     name: "Zebo Ganieva",
     role: t("teacher_zebo_role"),
     bio: t("teacher_zebo_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Zebo+Ganieva&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
+    img: "/teachers/zebo.jpg",
+    fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Zebo+Ganieva&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
     tags: ["TOEFL 110", "Academic English"]
   },
   {
     name: "Malika Karimova",
     role: t("teacher_malika_role"),
     bio: t("teacher_malika_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Malika+Karimova&backgroundColor=020617,1e293b,0d1527&textColor=06b6d4&fontSize=38&fontWeight=750",
+    img: "/teachers/malika.jpg",
+    fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Malika+Karimova&backgroundColor=020617,1e293b,0d1527&textColor=06b6d4&fontSize=38&fontWeight=750",
     tags: ["DET Expert", "Linguistics"]
   },
   {
     name: "James Wilson",
     role: t("teacher_james_role"),
     bio: t("teacher_james_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=James+Wilson&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6&fontSize=38&fontWeight=750",
+    img: "/teachers/james.jpg",
+    fallback: "https://api.dicebear.com/7.x/initials/svg?seed=James+Wilson&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6&fontSize=38&fontWeight=750",
     tags: ["Academic Writing", "Harvard Extension"]
   },
   {
     name: "Sara Kim",
     role: t("teacher_sara_role"),
     bio: t("teacher_sara_bio"),
-    img: "https://api.dicebear.com/7.x/initials/svg?seed=Sara+Kim&backgroundColor=020617,1e293b,0d1527&textColor=fafafa&fontSize=38&fontWeight=750",
+    img: "/teachers/sara.jpg",
+    fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Sara+Kim&backgroundColor=020617,1e293b,0d1527&textColor=fafafa&fontSize=38&fontWeight=750",
     tags: ["TOPIK 5", "Native"]
   }
 ];
 
 function TeacherCard({ teacher }: { teacher: any }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [attempt, setAttempt] = useState<"jpg" | "png" | "jpeg" | "fallback">("jpg");
+
+  const baseImgPath = teacher.img.substring(0, teacher.img.lastIndexOf('.'));
+  const imgSrc = (() => {
+    switch (attempt) {
+      case "jpg": return `${baseImgPath}.jpg`;
+      case "png": return `${baseImgPath}.png`;
+      case "jpeg": return `${baseImgPath}.jpeg`;
+      case "fallback": return teacher.fallback;
+    }
+  })();
+
+  const handleImageError = () => {
+    if (attempt === "jpg") {
+      setAttempt("png");
+    } else if (attempt === "png") {
+      setAttempt("jpeg");
+    } else if (attempt === "jpeg") {
+      setAttempt("fallback");
+    }
+  };
 
   return (
     <div
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
-      onClick={() => setIsExpanded(!isExpanded)}
-      className="relative shrink-0 w-[240px] sm:w-[280px] md:w-[320px] cursor-pointer group/card select-none"
+      className="relative shrink-0 w-[240px] sm:w-[280px] md:w-[320px] group/card select-none"
     >
       <div className="relative aspect-[4/5] rounded-[32px] md:rounded-[40px] overflow-hidden mb-2 mirror-panel border-white/10 hover:border-white/30 shadow-2xl transition-all duration-500">
         {/* Background Radial Glow */}
         <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/10 via-transparent to-brand-cyan/5 -z-10" />
         
         <img 
-          src={teacher.img} 
+          src={imgSrc} 
           alt={teacher.name} 
+          onError={handleImageError}
           className={cn(
-            "w-full h-full grayscale brightness-110 opacity-70 group-hover/card:grayscale-0 group-hover/card:opacity-100 group-hover/card:scale-105 transition-all duration-700",
-            typeof teacher.img === 'string' && teacher.img.includes("dicebear.com") ? "object-contain p-6" : "object-cover"
+            "w-full h-full opacity-100 group-hover/card:scale-105 transition-all duration-700",
+            imgSrc.includes("dicebear.com") ? "object-contain p-6" : "object-cover"
           )}
           referrerPolicy="no-referrer"
         />
@@ -100,24 +126,6 @@ function TeacherCard({ teacher }: { teacher: any }) {
           </div>
           <h3 className="text-xl md:text-2xl font-display font-black text-white italic tracking-tight whitespace-normal leading-tight">{teacher.name}</h3>
           <p className="text-[10px] md:text-xs text-brand-cyan font-bold uppercase tracking-widest mt-1">{teacher.role}</p>
-        </div>
-
-        {/* Absolute Smooth Slide-Up Bio (Takes zero document reflow, zero-lag) */}
-        <div className={cn(
-          "absolute inset-0 bg-brand-navy/75 backdrop-blur-md p-6 flex flex-col justify-between transition-all duration-500 border border-white/15 rounded-[32px] md:rounded-[40px] z-30",
-          isExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12 pointer-events-none"
-        )}>
-          <div>
-            <div className="text-[9px] font-black uppercase tracking-widest text-brand-cyan mb-3 italic">Academic Profile</div>
-            <h4 className="text-lg font-display font-black text-white italic mb-2 tracking-tight">{teacher.name}</h4>
-            <p className="text-xs md:text-sm text-white/80 leading-relaxed font-semibold">
-              {teacher.bio}
-            </p>
-          </div>
-          
-          <div className="text-[8px] font-black uppercase tracking-widest text-white/30 italic flex items-center gap-1.5 pt-3 border-t border-white/5">
-            <span>Tap / Hover to close</span>
-          </div>
         </div>
       </div>
     </div>
