@@ -26,7 +26,7 @@ const getTeachers = (t: (key: string) => string) => [
     bio: t("teacher_Marjona_bio"),
     img: "/marjona.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
-    tags: ["Celta Certified", "IELTS 7"]
+    tags: ["6s experience", "TOPIK 3"]
   },
   {
     name: "Bahodir Jo'rayev",
