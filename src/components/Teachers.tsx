@@ -8,41 +8,41 @@ const getTeachers = (t: (key: string) => string) => [
     name: "Umidjon Davlatov",
     role: t("teacher_umidjon_role"),
     bio: t("teacher_umidjon_bio"),
-    img: "/umid.jpg",
+    img: "/teachers/umidjon.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Umidjon+Davlatov&backgroundColor=020617,1e293b,0d1527&textColor=06b6d4&fontSize=38&fontWeight=750",
     tags: ["Founder", "Strategist"]
   },
   {
-    name: "Asilbek To'xtayev",
+    name: "Asilbek To'xtaboyev",
     role: t("teacher_dustyor_role"),
     bio: t("teacher_dustyor_bio"),
-    img: "/asilbek1.jpg",
+    img: "/teachers/asilbek.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Asilbek+To'xtaboyev&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
     tags: ["Manager", "Success Lead"]
   },
   {
-    name: "Marjona Avazova",
-    role: t("Head Administartor at Seoul smart education"),
-    bio: t("teacher_Marjona_bio"),
-    img: "/marjona.jpg",
+    name: "Elena Petrova",
+    role: t("teacher_elena_role"),
+    bio: t("teacher_elena_bio"),
+    img: "/teachers/elena.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Elena+Petrova&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
-    tags: ["6s experience", "TOPIK 3"]
+    tags: ["Celta Certified", "IELTS 7"]
   },
   {
-    name: "Bahodir Jo'rayev",
-    role: t("SAT Master"),
-    bio: t("teacher_Bahodir_bio"),
+    name: "Alisher Sodikov",
+    role: t("teacher_alisher_role"),
+    bio: t("teacher_alisher_bio"),
     img: "/teachers/alisher.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Alisher+Sodikov&backgroundColor=020617,1e293b,0d1527&textColor=f59e0b&fontSize=38&fontWeight=750",
-    tags: ["SAT 1190", "CEO of Nova team"]
+    tags: ["SAT 1320", "Math Guru"]
   },
   {
-    name: "Anna Alekseevna",
-    role: t("Russian Tutor"),
-    bio: t("teacher_Anna_bio"),
-    img: "/anna.jpg",
+    name: "Zebo Ganieva",
+    role: t("teacher_zebo_role"),
+    bio: t("teacher_zebo_bio"),
+    img: "/teachers/zebo.jpg",
     fallback: "https://api.dicebear.com/7.x/initials/svg?seed=Zebo+Ganieva&backgroundColor=020617,1e293b,0d1527&textColor=3b82f6,06b6d4&fontSize=38&fontWeight=750",
-    tags: ["5 years experience", "Academic Russian"]
+    tags: ["TOEFL 110", "Academic English"]
   },
   {
     name: "Malika Karimova",

@@ -240,7 +240,7 @@ Strict Schema guidelines:
     let botToken = process.env.TELEGRAM_BOT_TOKEN || "8681856242:AAHGY8P9pcVZNo327LgGyZ3x4NsBtbaOWLs";
     const chatId = process.env.TELEGRAM_CHAT_ID || "8681856242";
 
-    // Auto prepend the standard bot ID prefix if the user set a token without the colon divider
+    // Ensure token format is correct
     if (botToken && !botToken.includes(":")) {
       botToken = `8681856242:${botToken}`;
     }
